@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>User List</title>
+  <style>
+    table {
+      width: 50%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    table, th, td {
+      border: 1px solid black;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
+<h2>User List</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>FirstName</th>
+    <th>LastName</th>
+    <th>Email</th>
+  </tr>
+  </thead>
+  <tbody>
+  <!-- Итерация по списку users с использованием Thymeleaf -->
+  <tr th:each="user : ${users}">
+    <!-- Поле id как ссылка на страницу /user?id=...... -->
+    <td>
+      <a th:href="@{/user?id={id}(id=${user.id})}" th:text="${user.id}">Id</a>
+    </td>
+    <td th:text="${user.firstName}">FirstName</td>
+    <td th:text="${user.lastName}">LastName</td>
+    <td th:text="${user.email}">Email</td>
+  </tr>
+  </tbody>
+</table>
+
+<br/>
+<hr/>
+<!-- Ссылка на страницу добавления нового пользователя /users/new -->
+<a th:href="@{/users/new}" th:text="EnterNewUser">EnterNewUser</a>
+
+
+</body>
+</html>

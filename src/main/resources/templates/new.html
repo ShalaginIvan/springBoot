@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New user</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Enter new user</h2>
+
+<form th:method="POST" th:action="@{/users}" th:object="${user}">
+    <div>
+        <label for="firstName">FirstName: </label>
+        <input type="text" th:field="*{firstName}" id="firstName"/>
+        <div style="color:red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">FirstName error</div>
+        <br/>
+
+        <label for="lastName">LastName: </label>
+        <input type="text" th:field="*{lastName}" id="lastName"/>
+        <div style="color:red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">LastName error</div>
+        <br/>
+
+        <label for="email">Email: </label>
+        <input type="text" th:field="*{email}" id="email"/>
+        <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</div>
+        <br/>
+
+        <input type="submit" value="Create!" />
+
+    </div>
+
+</form>
+<br/>
+<hr/>
+<!-- Ссылка на страницу списка всех пользователей /users -->
+<a th:href="@{/users}" th:text="UsersList">UsersList</a>
+
+
+</body>
+</html>
